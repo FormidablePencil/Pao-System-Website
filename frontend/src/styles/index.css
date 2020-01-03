@@ -1,0 +1,12 @@
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* @font-face {
+   font-family: 'RockSalt';
+   src: local('RockSalt'), url('../fonts/RockSalt-Regular.ttf') format('woff2');
+ } */
+  
