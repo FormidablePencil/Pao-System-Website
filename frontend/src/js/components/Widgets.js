@@ -2,6 +2,7 @@ import React from 'react';
 import circle from './../../images/full-moon.png';
 import checkCircle from './../../images/check.png';
 import switchImg from './../../images/switch.png';
+import magnifyingGlass from './../../images/magnifying-glass-finder.png';
 
 export const WidgetShuffle = () => {
   return (
@@ -51,8 +52,8 @@ export const WidgetSearch = () => {
 
           <div className="flex self-center pt-12">
             <p>Search </p>
-            <img src="./../../images/magnifying-glass-finder.png" alt=""/>
             <input className="border-b border-gray-800 bg-transparent" type="text"/>
+            <img src={magnifyingGlass} alt="magnifying-glass" width="30" />
           </div>
 
   )

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { WidgetSearch } from './Widgets';
 
 export default class SidebarRight extends Component {
   render () {
@@ -11,7 +10,6 @@ export default class SidebarRight extends Component {
       <div className="flex flex-col w-full">
         <div className="ml-12 mb-10">
 
-            <WidgetSearch />
           <div className="flex flex-col mt-10">
 
             <RedirectTo url="/flashcards" pageComp="flashcard mode" />

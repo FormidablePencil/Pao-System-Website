@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-let controller1 = require('../controllers/landing');
-
-/* GET users listing. */
-router.get('/', controller1.get_landing);
+router.get('/', function(req, res, next) {
+  res.render('landing', { title: 'Express' });
+});
 
 module.exports = router;

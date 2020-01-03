@@ -20,25 +20,18 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
       MenuWindow : false,
       SettingsWindow : false,
       users: [],
-      qwe: "qweeee"
+      qwe: "test123"
     };
      
     this.eventHandler = this.eventHandler.bind(this);
     this.eventHandler2 = this.eventHandler2.bind(this); //this is what I did with the event handler. So I created state with a constructor and bound eventHandler2 'this' key to refer to the what's within the constructore and so whenever the eventHandelr was fired it got direct access to everything within the constructor.
   };
 
-  // componentDidMount = () => {
-  //   axios.get("/test").then(response => {
-  //     // console.log(response.data.temp_c);
-  //     console.log(response);
-  //   });
-  // };
-
-  componentDidMount() {
-    fetch('/api/customers')
-      .then(res => res.json())
-      .then(customers => this.setState({customers}, () => console.log('Customers fetched..', customers)))
-  }
+  // componentDidMount() {
+  //   fetch('/api/customers')
+  //     .then(res => res.json())
+  //     .then(customers => this.setState({customers}, () => console.log('Customers fetched..', customers)))
+  // }
   
   
   eventHandler2(e) {

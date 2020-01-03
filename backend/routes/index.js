@@ -1,10 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+let controller1 = require('../controllers/landing');
+
+router.get('/', controller1.get_landing);
+router.post('/', controller1.submit_lead);
+//@ sds
+//! dfdfdfdffdff
+//* sdsd
+//? sdsd
+//~ dfdfddff
+//% fdffddfdfdfd
+//todo dfdffddfddfdfdf
 
 module.exports = router;
 
