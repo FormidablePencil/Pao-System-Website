@@ -20,11 +20,11 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
       MenuWindow : false,
       SettingsWindow : false,
       users: [],
-      qwe: "test123"
+      qwe: "test123",
+      renderedResponse: '12'
     };
      
-    this.eventHandler = this.eventHandler.bind(this);
-    this.eventHandler2 = this.eventHandler2.bind(this); //this is what I did with the event handler. So I created state with a constructor and bound eventHandler2 'this' key to refer to the what's within the constructore and so whenever the eventHandelr was fired it got direct access to everything within the constructor.
+    this.eventHandler2 = this.eventHandler2.bind(this); //~ now this.eventHandler2 refers to the actual function within this class. An alternative method is make the eventhander2 an arrow function. eventhandler demonstrates that. No cunstructore and bind needed. The state could be outside of a constructor.
   };
 
   // componentDidMount() {
@@ -33,6 +33,21 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
   //     .then(customers => this.setState({customers}, () => console.log('Customers fetched..', customers)))
   // }
   
+  weGetResponse = async() => {
+    const response = await fetch('/');
+    const body = await response.json();
+    if (response.state !==200) throw Error(body.message);
+    
+    return body
+  }
+
+  componentDidMount() {
+    this.weGetResponse()
+      .then(res => {
+        const PaoData = res;
+        this.setState({ renderedResponse: PaoData })
+      })
+  }
   
   eventHandler2(e) {
     this.setState({
@@ -40,20 +55,26 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
     })
   };
 
-  eventHandler(e) {
+  eventHandler = (e) => {
     this.setState({
       MenuWindow: !this.state.MenuWindow
 
     });
   };
 
-  
+  //% I'm going to need to make an input field for the use to type in data, update that into the state, have the state be linked to Redux and from redux do send requests to the server with the data.
   render () {
+
+    const { renderedResponse } = this.state; //~ indead of typing out this.state all the time we could use this method of doing things.
+    
     return (
       <div className="relative">
       <div className="text-white">
-        <div>{this.state.users}</div>
-        <div>{this.state.qwe}</div>
+
+        <div>1 {this.state.renderedResponse}</div>
+        <div>2 {renderedResponse}</div>
+        <input type="text"/>
+
 
         <ul>{this.state.users.map(user => 
           <li key={user.id}>{user.username}</li>

@@ -38,4 +38,41 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+//~I've created the database and connected to it.
+//@ Connecting to DB... 
+const mongoose = require('mongoose');
+require('dotenv/config');
+
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('connected to DB!'));
+
+
+//@ ----
+//% Using middlewares
+
+//* const indexRoute = require('./routes/index');
+
+//* app.use('/index', indexRoute); //this means that this is the starting point of an api within the index.js router //! though this won't work since the index routers have already been set by another middleware
+
+//% ----
+//- This is used to get req.body for json files to work but by the looks of it something else is already handling it
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
+// ---
+//@ gettting an api to work from external sources. It passess the CORS policy: No 'Access-Control-Allow-Origin'
+// const cors = require('cors');
+// app.use(cors());
+// app.use(bodyParser.json());
+
+//this is by which I've fetch the data:
+// fetch('http://localhost:5000/')
+//   .then(result => {
+//   return result.json();
+// })
+//   .then(data => {
+//   console.log(data);
+// })
+//@ ----
+
 module.exports = app;
