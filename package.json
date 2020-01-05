@@ -4,7 +4,7 @@
   "description": "Pao System",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ./frontend && npm run build --prefix ./frontend && npm run start --prefix ./backend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
 
   },
   "repository": {
