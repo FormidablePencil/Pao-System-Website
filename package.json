@@ -1,0 +1,23 @@
+{
+  "name": "paoproject",
+  "version": "1.0.0",
+  "description": "Pao System",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend && npm run start backend"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DennisBogdanAleksandrov/Pao-System.git"
+  },
+  "author": "Dennis Aleksandrov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DennisBogdanAleksandrov/Pao-System/issues"
+  },
+  "homepage": "https://github.com/DennisBogdanAleksandrov/Pao-System#readme",
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  }
+}
