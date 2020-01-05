@@ -50,8 +50,14 @@ app.use(function(err, req, res, next) {
 //@ Connecting to DB... 
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
-
+// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+// Connect to MongoDB
+mongoose.connect('mongodb+srv://Admin:Dennis15@cluster0-whq0u.mongodb.net/test', {useNewUrlParser: true});
+    mongoose.connection.once('open', function(){
+      console.log('Conection has been made!');
+    }).on('error', function(error){
+        console.log('Error is: ', error);
+    });
 
 //@ ----
 //% Using middlewares
