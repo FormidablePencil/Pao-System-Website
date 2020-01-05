@@ -19,7 +19,7 @@ if(process.env.NODE_ENV === 'production') {
   app.use(express.static('../frontend/public'));
 
   app.get('*', (req, res) => {
-    res.sendFile(pathi.resolve(__dirname, '../frontend', 'public', 'index.html'))
+    res.sendFile(path.resolve(__dirname, '../frontend', 'public', 'index.html'))
   });
 }
 // app.use(express.static(path.join(__dirname, 'public')));
