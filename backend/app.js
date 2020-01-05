@@ -17,7 +17,7 @@ var app = express();
 // app.use(cookieParser());
 
 // Serve static assets if in production
-if(process.env.NODE_ENV === 'production') {
+if(process.env.NODE_ENV == 'production') {
   //Set statuc folder
   app.use(express.static('../frontend/public'));
 
