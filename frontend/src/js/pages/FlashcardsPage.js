@@ -9,10 +9,10 @@ import SidebarRight from '../components/SidebarR';
 import Flashcard, { FlashcardPhoneScreen } from '../components/Flashcard';
 import SettingsWindow from '../components/popup windows comps/SettingsWindow';
 import MenuWindow from '../components/popup windows comps/MenuWindow';
-import uuid from 'uuid';
+import ItemModal from '../components/ItemModal'
 // import axios from "axios";
 import { connect } from 'react-redux';
-import { getItems } from './../../actions/itemAction'; //~ getItem proforms an action GET_ITEMS which if you look into itemReducer GET_ITEMS returns to you the state. If you want to access the state then you would use 'item' just as reducer/index sets it so.
+import { getItems, deleteItem } from './../../actions/itemAction'; //~ getItem proforms an action GET_ITEMS which if you look into itemReducer GET_ITEMS returns to you the state. If you want to access the state then you would use 'item' just as reducer/index sets it so.
 import PropTypes from 'prop-types';
 
 //% Reducers folder, actions folder and store.js is all of Redux. Store is the setup, Reducers are the ..., and actions are the ...
@@ -55,43 +55,32 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
     });
   };
 
+  onDeleteClick = (id) => {
+    this.props.deleteItem(id);
+  }
+
   //% I'm going to need to make an input field for the use to type in data, update that into the state, have the state be linked to Redux and from redux do send requests to the server with the data.
   render () {
-
     const { items } = this.props.item; 
 
     return (
       <div className="relative">
       <div className="text-white">
 
-        {/* <div>2 {items}</div> */}
-        <button onClick={() => {
-          const name = prompt('Enter Item'); 
-          if(name) {
-            this.setState(state => ({
-              items: [...state.items, { id: uuid(), name }]
-            })); //~ updating state
-          } 
-        }}
-        >click me</button>
+        <ItemModal />
 
-        {/* //~ Mapped shit */}
-        <div className="bg-gray-700 w-64">
-          <h1>Within thisstateitems:</h1>
-
-          {items.map(({ id, name }) => (
-            <div key={id}>{name}
-              {/*//~` Delete functionality */}
-            <button
-              onClick={() => {
-                this.setState(state => ({
-                  items: state.items.filter(item => item.id !== id)
-                }));//@ this means to set state of items object with everything except the property with he the certian id.
-              }}>Delete &times;</button>
-              </div>
-          ))}
+        <div className="bg-gray-700 w-64 m-10">
+            <h1 className="bg-teal-600 text-3xl pl-1">Data</h1>
+            {items.map(({ _id, person, action, number, object }) => (
+              <div key={_id} className="flex justify-between p-3">
+                <span>{number}</span>
+                <span>{person}</span>
+                <span>{action}</span>
+                <span>{object}</span>
+                <button onClick={this.onDeleteClick.bind(this, _id)} className="ml-3">&times;</button>
+              </div>  
+            ))}
         </div>
-
 
       </div>
 
@@ -154,4 +143,5 @@ const mapStateToProps = (state) => ({
   item: state.item
 });
 
-export default connect(mapStateToProps, { getItems })(FlashCardsP);
+export default connect(mapStateToProps, { getItems, deleteItem })(FlashCardsP); 
+        //~ whatever you import must also go here to wrap the class component.

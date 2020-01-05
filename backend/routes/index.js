@@ -5,7 +5,7 @@ const PaoSchema = require('../models/paoSchema')
 let controller1 = require('../controllers/Paos');
 
 //~ Create from Crud
-router.post('/', async (req, res) => {
+router.post('/api/items', async (req, res) => {
   const pao = new PaoSchema({
       number: req.body.number,
       person: req.body.person,
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 });
 
 //~ Read from cRud
-router.get('/', async (req, res) => {
+router.get('/api/items', async (req, res) => {
   try{
     const paoSets = await PaoSchema.find(); //this returns everything
     res.json(paoSets);
@@ -42,9 +42,9 @@ router.get('/:paoId', async (req, res) => {
 });
 
 //~ Delete a specific pao. cruD
-router.delete('/:paoId', async (req, res) => {
+router.delete('/api/items/:paoId', async (req, res) => {
   try{
-    const removedPao = await PaoSchema.remove({_id: req.params.paoId}); //remove the pao that is associate with the _id that is within the params (aka path).
+    const removedPao = await PaoSchema.deleteMany({_id: req.params.paoId}); //remove the pao that is associate with the _id that is within the params (aka path).
     res.json(removedPao);
   }catch(err){
     res.json({message:err});

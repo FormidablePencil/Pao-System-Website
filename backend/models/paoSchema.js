@@ -5,19 +5,19 @@ const mongoose = require('mongoose');
 const PaoSchema = mongoose.Schema({
   number: {
     type: Number,
-    required: true
+    required: false
   },
   person: {
     type: String,
-    required: true
+    required: false
   },
   action: {
     type: String,
-    required: true
+    required: false
   },
   object: {
     type: String,
-    required: true
+    required: false
   }
 });
 
