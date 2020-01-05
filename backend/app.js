@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
+require('dotenv/config');
+
 
 var indexRouter = require('./routes/index');
 
@@ -45,8 +48,6 @@ app.use(function(err, req, res, next) {
 
 //~I've created the database and connected to it.
 //@ Connecting to DB... 
-const mongoose = require('mongoose');
-require('dotenv/config');
 
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
