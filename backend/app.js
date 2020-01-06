@@ -51,12 +51,14 @@ app.use(function(err, req, res, next) {
 
 //Connect to DB
 // mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true});
-         mongoose.connection.once('open', function(){
-         console.log('Conection has been made!');
-             }).on('error', function(error){
-          console.log('Error is::::: ', error);
-           });
+mongoose
+  .connect(process.env.DB_CONNECTION, { 
+    useNewUrlParser: true,
+    useCreateIndex: true
+  }) // Adding new mongo url parser
+  .then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
+
 
 //@ ----
 //% Using middlewares
