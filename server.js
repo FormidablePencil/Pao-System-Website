@@ -36,7 +36,7 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
 //   client.close();
 // });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000; //~ we tell the server to be on port 5000 if not in domain
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
