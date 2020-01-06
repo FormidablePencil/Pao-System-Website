@@ -14,7 +14,7 @@ app.use(express.json());
 // Serve static assets if in production
 if(process.env.NODE_ENV == 'production') {
   //Set statuc folder
-  app.use(express.static('../frontend/public'));
+  app.use(express.static('client/build')); //~ this is the thing that specifies to the domain(heroku in my case) from where to laod the files. 
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
