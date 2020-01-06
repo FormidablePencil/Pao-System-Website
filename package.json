@@ -7,8 +7,8 @@
     "node": "12.14.0"
   },
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend && npm start --prefix backend",
-    "start": ""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend",
+    "start": "npm start --prefix backend"
 
   },
   "repository": {
