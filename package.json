@@ -1,14 +1,17 @@
 {
   "name": "backend",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
+  "engines": {
+    "node": "12.14.0"
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install"
   },
   "dependencies": {
     "concurrently": "^5.0.2",

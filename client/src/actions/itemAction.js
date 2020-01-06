@@ -23,17 +23,6 @@ export const addItem = item => dispatch => {
     })
   )
 };
-                //~ takes an id 
-// export const deleteItem = id => dispatch => { //! when the components use these actions then argumennts pass on to this function that intitiates an action.
-//   axios
-//     .delete('api/items/${id}')
-//     .then(res => 
-//       dispatch({
-//         type: DELETE_ITEM,
-//         payload: id
-//     }) 
-//   );
-// };
 
 export const deleteItem = id => dispatch => {
   axios.delete(`/api/items/${id}`).then(res => 

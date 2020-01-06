@@ -7,12 +7,18 @@ var app = express();
 var indexRouter = require('./routes/index');
 
 
-
+app.use('/', indexRouter);
 //Body parser built that is built into Express
 app.use(express.json());
 
+
+
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
 // Serve static assets if in production
-if(process.env.NODE_ENV == 'production') {
+if(process.env.NODE_ENV === 'production') {
   //Set statuc folder
   app.use(express.static('client/build')); //~ this is the thing that specifies to the domain(heroku in my case) from where to laod the files. 
 
@@ -21,10 +27,6 @@ if(process.env.NODE_ENV == 'production') {
   });
 }
 
-app.use('/', indexRouter);
-
-//Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // const MongoClient = require('mongodb').MongoClient;
@@ -40,4 +42,3 @@ const port = process.env.PORT || 5000; //~ we tell the server to be on port 5000
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
-module.exports = app;
