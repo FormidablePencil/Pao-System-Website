@@ -50,7 +50,7 @@ app.use(function(err, req, res, next) {
 //@ Connecting to DB... 
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
 //@ ----
 //% Using middlewares
 
