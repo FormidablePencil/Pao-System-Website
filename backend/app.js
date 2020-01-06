@@ -60,7 +60,7 @@ app.use(function(err, req, res, next) {
 //   .catch(err => console.log(err));
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://Admin:Dennis15@cluster0-whq0u.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
   // perform actions on the collection object
