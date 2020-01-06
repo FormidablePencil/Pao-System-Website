@@ -19,7 +19,7 @@ app.use(cors());
 
 //Connect to DB
 // mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.FIXIE_SOCKS_HOST || DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.FIXIE_SOCKS_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 // Serve static assets if in production
