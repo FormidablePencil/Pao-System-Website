@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const PaoSchema = require('../models/paoSchema')
 
-let controller1 = require('../controllers/Paos');
 
 //~ Create from Crud
 router.post('/api/items', async (req, res) => {

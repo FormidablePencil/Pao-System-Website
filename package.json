@@ -1,27 +1,23 @@
 {
-  "name": "paoproject",
-  "version": "1.0.0",
-  "description": "Pao System",
-  "main": "index.js",
-  "engines": {
-    "node": "12.14.0"
-  },
+  "name": "backend",
+  "version": "0.0.0",
+  "private": false,
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend",
-    "start": "npm start --prefix backend"
-
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DennisBogdanAleksandrov/Pao-System.git"
-  },
-  "author": "Dennis Aleksandrov",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DennisBogdanAleksandrov/Pao-System/issues"
-  },
-  "homepage": "https://github.com/DennisBogdanAleksandrov/Pao-System#readme",
   "dependencies": {
-    "concurrently": "^5.0.2"
+    "concurrently": "^5.0.2",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "mongoose": "^5.8.4",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
