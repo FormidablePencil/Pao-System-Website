@@ -1,6 +1,5 @@
 var express = require('express');
 const cors = require('cors');
-const axios = require('axios');
 
 // var path = require('path'); //@
 const mongoose = require('mongoose'); //@
@@ -10,17 +9,13 @@ var app = express();
 var indexRouter = require('./routes/index');
 // const bodyParser = require('body-parser')
 
+app.use(express.json()); //~ order matters. Not all the index 
 app.use('/', indexRouter);
-// Body parser built that is built into Express
-app.use(express.json());
-// app.use(bodyParser.json());
-
 app.use(cors());
 
 //Connect to DB
-// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.FIXIE_SOCKS_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.connect(process.env.DB_CONNECTION || MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+                              //MONGOD_URI is what heroko uses to connect to databases
 
 // Serve static assets if in production
 if(process.env.NODE_ENV === 'production') {
@@ -31,17 +26,6 @@ if(process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   });
 }
-
-
-
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://Admin:Dennis15@cluster0-whq0u.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perfor m actions on the collection object
-//   client.close();
-// });
 
 const port = process.env.PORT || 5000; //~ we tell the server to be on port 5000 if not in domain
 
