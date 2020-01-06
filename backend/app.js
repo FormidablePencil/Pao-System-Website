@@ -22,7 +22,7 @@ if(process.env.NODE_ENV == 'production') {
   app.use(express.static('../frontend/public'));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend', 'public', 'index.html'))
+    res.sendFile(path.join(__dirname, '../frontend/public/index.html'))
   });
 }
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -56,7 +56,7 @@ const uri = "mongodb+srv://Admin:Dennis15@cluster0-whq0u.mongodb.net/test?retryW
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
+  // perfor m actions on the collection object
   client.close();
 });
 
