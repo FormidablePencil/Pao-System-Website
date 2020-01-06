@@ -8,11 +8,11 @@ require('dotenv/config');
 
 var app = express();
 var indexRouter = require('./routes/index');
-
+const bodyParser = require('body-parser')
 
 app.use('/', indexRouter);
 //Body parser built that is built into Express
-app.use(express.json());
+app.use(bodyParser.json());
 
 app.use(cors());
 
