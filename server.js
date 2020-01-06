@@ -1,3 +1,6 @@
+const cors = require('cors');
+const axios = require('axios');
+
 var express = require('express');
 var path = require('path');
 const mongoose = require('mongoose');
@@ -11,6 +14,7 @@ app.use('/', indexRouter);
 //Body parser built that is built into Express
 app.use(express.json());
 
+app.use(cors());
 
 
 //Connect to DB

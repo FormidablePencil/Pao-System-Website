@@ -14,7 +14,9 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "concurrently": "^5.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "mongoose": "^5.8.4",
