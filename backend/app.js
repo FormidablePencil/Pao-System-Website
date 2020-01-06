@@ -11,10 +11,10 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(logger('dev'));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
 
 // Serve static assets if in production
 if(process.env.NODE_ENV == 'production') {
@@ -50,7 +50,14 @@ app.use(function(err, req, res, next) {
 //@ Connecting to DB... 
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true});
+         mongoose.connection.once('open', function(){
+         console.log('Conection has been made!');
+             }).on('error', function(error){
+          console.log('Error is::::: ', error);
+           });
+
 //@ ----
 //% Using middlewares
 
