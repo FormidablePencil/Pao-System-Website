@@ -1,35 +1,43 @@
+var express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 
-var express = require('express');
-var path = require('path');
-const mongoose = require('mongoose');
+// var path = require('path'); //@
+// const mongoose = require('mongoose'); //@
 require('dotenv/config');
 
 var app = express();
-var indexRouter = require('./routes/index');
-const bodyParser = require('body-parser')
+// var indexRouter = require('./routes/index');
+// const bodyParser = require('body-parser')
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 //Body parser built that is built into Express
-app.use(bodyParser.json());
+// app.use(express.json());
+// app.use(bodyParser.json());
 
 app.use(cors());
 
+app.get('/apple', (req, res) => {
+  const user = req.query.user || "reedbarger";
+  axios.get(`https://api.github.com/users/${user}`).then(response => {
+    res.json({ user: response.data });
+  })
+})
 
-//Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// //Connect to DB
+// mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-// Serve static assets if in production
-if(process.env.NODE_ENV === 'production') {
-  //Set statuc folder
-  app.use(express.static('client/build')); //~ this is the thing that specifies to the domain(heroku in my case) from where to laod the files. 
+// // Serve static assets if in production
+// if(process.env.NODE_ENV === 'production') {
+//   //Set statuc folder
+//   app.use(express.static('client/build')); //~ this is the thing that specifies to the domain(heroku in my case) from where to laod the files. 
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+//   });
+// }
 
 
 
