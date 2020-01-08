@@ -12,8 +12,10 @@ import MenuWindow from '../components/popup windows comps/MenuWindow';
 import ItemModal from '../components/ItemModal'
 // import axios from "axios";
 import { connect } from 'react-redux';
-import { getItems, deleteItem } from './../../actions/itemAction'; //~ getItem proforms an action GET_ITEMS which if you look into itemReducer GET_ITEMS returns to you the state. If you want to access the state then you would use 'item' just as reducer/index sets it so.
+import { getItems, deleteItem } from './../../actions/itemAction'; //~ getItem proforms an action GET_ITEMS which if you look into itemReducer GET_ITEMS isterreturns to you the state. If you want to access the state then you would use 'item' just as reducer/index sets it so.
 import PropTypes from 'prop-types';
+import RegisterModal from '../auth/RegisterModal';
+import Logout from '../auth/Logout';
 
 //% Reducers folder, actions folder and store.js is all of Redux. Store is the setup, Reducers are the ..., and actions are the ...
 
@@ -57,7 +59,7 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
 
   onDeleteClick = (id) => {
     this.props.deleteItem(id);
-  }
+  } //@ called an action >
 
   //% I'm going to need to make an input field for the use to type in data, update that into the state, have the state be linked to Redux and from redux do send requests to the server with the data.
   render () {
@@ -69,6 +71,10 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
 
         <ItemModal />
 
+        <RegisterModal />
+
+        <Logout />
+        
         <div className="bg-gray-700 w-64 m-10">
             <h1 className="bg-teal-600 text-3xl pl-1">Data</h1>
             {items.map(({ _id, person, action, number, object }) => (

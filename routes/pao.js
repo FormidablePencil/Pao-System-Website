@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const PaoSchema = require('../models/paoSchema')
+const auth = require('../middleware/auth');
 
-
-//~ Create from Crud
-router.post('/api/items', async (req, res) => {
+//~ we've added an auth middleware to protect this route. If not authorized (token and all) them denied
+router.post('/api/items', auth, async (req, res) => {
   const pao = new PaoSchema({
       number: req.body.number,
       person: req.body.person,
@@ -19,7 +19,6 @@ router.post('/api/items', async (req, res) => {
   }
 });
 
-//~ Read from cRud
 router.get('/api/items', async (req, res) => {
   try{
     const paoSets = await PaoSchema.find(); //this returns everything
@@ -29,7 +28,6 @@ router.get('/api/items', async (req, res) => {
   }
 });
 
-//~ read spacific pao of a specific id.
 router.get('/:paoId', async (req, res) => {
   try{
     const pao = await PaoSchema.findById(req.params.paoId); 
@@ -41,7 +39,7 @@ router.get('/:paoId', async (req, res) => {
 });
 
 //~ Delete a specific pao. cruD
-router.delete('/api/items/:paoId', async (req, res) => {
+router.delete('/api/items/:paoId', auth, async (req, res) => {
   try{
     const removedPao = await PaoSchema.deleteMany({_id: req.params.paoId}); //remove the pao that is associate with the _id that is within the params (aka path).
     res.json(removedPao);
@@ -69,23 +67,5 @@ router.patch('/:paoId', async (req, res) => {
     res.json({message:err});
   }
 });
-
-//* bellow code is the same as above but a cleaner syntax
-// router.post('/', (req, res) => {
-//   const pao = new PaoSchema({
-//       number: req.body.number,
-//       person: req.body.person,
-//       action: req.body.action,
-//       object: req.body.object
-//   });
-//   pao.save()
-//     .then(data => {
-//       res.json(data);
-//     })
-//     .catch(err => {
-//       res.json({message: err});
-//     })
-//   // console.log(req.body); //This shouldn't work without body-parser  
-// });
 
 module.exports = router;

@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux'; //@ package
 import itemReducer from './itemReducer';
+import errorReducer from './errorReducer';
+import authReducer from './authReducer';
 
 //~ this is where this.props... is refered to. This is the centrol point sortasay
 
 export default combineReducers({
-  item: itemReducer
+  item: itemReducer,
+  error: errorReducer,
+  auth: authReducer
 })
 
 

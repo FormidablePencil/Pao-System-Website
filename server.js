@@ -1,20 +1,26 @@
 var express = require('express');
 const cors = require('cors');
+const config = require('config');
 
 // var path = require('path'); //@
 const mongoose = require('mongoose'); //@
-require('dotenv/config');
+
+const DB_CONNECTION = config.get('myDb');
 
 var app = express();
-var indexRouter = require('./routes/index');
+var paoRouter = require('./routes/pao');
+var userRouter = require('./routes/users');
+var authRouter = require('./routes/auth');
 // const bodyParser = require('body-parser')
 
-app.use(express.json()); //~ order matters. Not all the index 
-app.use('/', indexRouter);
+app.use(express.json()); //~ order matters. Not all the pao 
+app.use('/', paoRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 app.use(cors());
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION || MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DB_CONNECTION || MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
                               //MONGOD_URI is what heroko uses to connect to databases
 
 // Serve static assets if in production

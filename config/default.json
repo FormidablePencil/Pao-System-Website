@@ -1,0 +1,4 @@
+{
+  "myDb": "mongodb+srv://Admin:Dennis15@cluster0-whq0u.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "this_ismyJwtSecret123"
+}
