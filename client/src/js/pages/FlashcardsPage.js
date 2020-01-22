@@ -16,6 +16,7 @@ import { getItems, deleteItem } from './../../actions/itemAction'; //~ getItem p
 import PropTypes from 'prop-types';
 import RegisterModal from '../auth/RegisterModal';
 import Logout from '../auth/Logout';
+import Login from '../auth/Login';
 
 //% Reducers folder, actions folder and store.js is all of Redux. Store is the setup, Reducers are the ..., and actions are the ...
 
@@ -27,9 +28,15 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
       MenuWindow : false,
       SettingsWindow : false,
     };
-     
+
+    
     this.eventHandler2 = this.eventHandler2.bind(this); //~ now this.eventHandler2 refers to the actual function within this class. An alternative method is make the eventhander2 an arrow function. eventhandler demonstrates that. No cunstructore and bind needed. The state could be outside of a constructor.
   };
+  
+  static propTypes = {
+   getItems: PropTypes.func.isRequired,
+   item: PropTypes.object.isRequired
+ }
 
   componentDidMount() {
     this.props.getItems();
@@ -69,14 +76,15 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
       <div className="relative">
       <div className="text-white">
 
-        <ItemModal />
 
         <RegisterModal />
 
         <Logout />
+        <Login />
         
         <div className="bg-gray-700 w-64 m-10">
             <h1 className="bg-teal-600 text-3xl pl-1">Data</h1>
+            <ItemModal />
             {items.map(({ _id, person, action, number, object }) => (
               <div key={_id} className="flex justify-between p-3">
                 <span>{number}</span>
@@ -140,10 +148,10 @@ export class FlashCardsP extends Component { //! make an option to edit a card w
   }
 };
 
-FlashCardsP.propTypes = {
-  getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired
-}
+// FlashCardsP.propTypes = {
+//   getItems: PropTypes.func.isRequired,
+//   item: PropTypes.object.isRequired
+// }
 
 const mapStateToProps = (state) => ({
   item: state.item

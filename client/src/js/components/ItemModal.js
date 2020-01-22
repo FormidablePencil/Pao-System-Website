@@ -39,8 +39,8 @@ class ItemModal extends Component {
   render() {
     return (
       <div className="relative">
-       <button className="bg-red-700" onClick={this.toggle}>
-          Show modal
+       <button className="bg-red-700 py-1 px-5 m-1 rounded" onClick={this.toggle}>
+          Add to list
         </button> 
         <div className={this.state.modal ? "" : "hidden"}>
           <div className="w-screen h-screen bg-black-transparent2 absolute inset-0"></div>

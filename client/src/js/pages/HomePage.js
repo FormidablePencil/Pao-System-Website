@@ -22,7 +22,7 @@ export class Home extends Component {
         </div>
       </div>
 
-      <div className="md:px-24 xxl:px-0"> 
+      <div className="md:px-24 border-l xxl:px-0"> 
         <div className="hidden lg:block h-24 linearGradientBlue rounded-t-full"></div>
         <div className="flex flex-col lg:bg-white">
           <div className="lg:flex justify-center">
